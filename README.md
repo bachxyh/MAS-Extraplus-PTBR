@@ -1,4 +1,4 @@
-# ⚠ O criado está trabalhando no submod, não faça download do código base. Possível grande atualização este ano~
+# ⚠ O criador está trabalhando no submod, não faça download do código base. Possível grande atualização este ano~
 <p align="center">
   <img src="https://github.com/Zero-Fixer/MAS-Extraplus-EN/assets/142945683/0276af8f-5de5-43b6-b581-d2b9edf1a889">
 </p>
