@@ -17,10 +17,10 @@ Um submod que adiciona pequenos acréscimos ao Monika After Story (MAS), algo qu
   
 ## Recursos
 - Minijogos
-- Boop Monika
+- Cutucar a Monika
 - Encontros
 - Adições
-- Botão extra+ para conveniência do jogador
+- Novo Botão extra+ 
   
 ## Condições
 Neste submod, há condições que dependem do afeto de Monika.
