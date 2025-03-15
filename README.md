@@ -99,4 +99,8 @@ Se este submod for editado por outra pessoa e enviar essa modificação para a c
 <img alt="youtube" src="https://cdn.icon-icons.com/icons2/1211/PNG/512/1491579609-yumminkysocialmedia08_83079.png" width="100">
 
 ## Comunidade MASBrasil
-[![Discord](MAS-Extraplus-PTBR/icons_readme/monkerMASBRASIL.png)](https://discord.gg/masbrasil)
+<a href="https://discord.gg/masbrasil">
+    <img src="https://github.com/bachxyh/MAS-Extraplus-PTBR/blob/main/icons_readme/monkerMASBRASIL.png" alt="Discord MASBrasil" width="100">
+</a>
+
+Junte-se a nossa comuinidade brasileira de Monika After Story!
