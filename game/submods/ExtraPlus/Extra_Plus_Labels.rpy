@@ -1,5 +1,5 @@
 #===========================================================================================
-# RETURN_LABELS
+# RETORNAR_LABELS
 #===========================================================================================
 
 label view_extraplus:
@@ -91,11 +91,11 @@ label extra_restore_bg(label="ch30_visual_skip"):
 # Label
 #===========================================================================================
 
-#====Cafe
+#====Cafeteria
 
 label go_to_cafe:
     python:
-        # check_file_status(cafe_sprite, '/game/submods/ExtraPlus/submod_assets/backgrounds')
+        check_file_status(cafe_sprite, '/game/submods/ExtraPlus/submod_assets/backgrounds')
         mas_extra_location(locate=True)
         extra_seen_background("cafe_sorry_player", "gtcafev2", "check_label_cafe")
 
@@ -105,39 +105,39 @@ label check_label_cafe:
 label gtcafe:
     show monika 1eua at t11
     if mas_isDayNow():
-        m 3sub "Do you want to go to the cafe?"
-        m 3hub "Glad to hear it [player]!"
-        m 1hubsa "I know this appointment will be great!"
-        m 1hubsb "Okay, let's go [mas_get_player_nickname()]~"
+        m 3sub "Você quer ir para a cafeteria?"
+        m 3hub "Fico feliz em ouvir isso, [player]!"
+        m 1hubsa "Eu sei que este encontro vai ser incrível!"
+        m 1hubsb "Ok, vamos lá, [mas_get_player_nickname()]~"
         jump cafe_init
 
     elif mas_isNightNow():
-        m 3sub "Oh, you want to go out to the cafe?"
-        m 3hub "It's pretty sweet that you decided to go tonight."
-        m 1eubsa "This date night is going to be great!"
-        m 1hubsb "Let's go [mas_get_player_nickname()]~"
+        m 3sub "Oh, você quer sair para tomar um café?"
+        m 3hub "É muito legal que você tenha decidido ir esta noite."
+        m 1eubsa "Esta noite de encontro vai ser ótima!"
+        m 1hubsb "Vamos lá, [mas_get_player_nickname()]~"
         jump cafe_init
     else:
-        m 1eub "Another time then, [mas_get_player_nickname()]."
+        m 1eub "Outra hora então, [mas_get_player_nickname()]."
         jump screen_extraplus
     return
 
 label gtcafev2:
     show monika 1eua at t11
     if mas_isDayNow():
-        m 3wub "Do you want to go to the cafe again?"
-        m 2hub "The previous time we went, I had a lot of fun!"
-        m 2eubsa "So glad to hear it [player]!"
-        m 1hubsb "Well, let's go [mas_get_player_nickname()]~"
+        m 3wub "Você quer ir tomar um café de novo?"
+        m 2hub "Da última vez que fomos, eu me diverti muito!"
+        m 2eubsa "Fico tão feliz em ouvir isso, [player]!"
+        m 1hubsb "Bem, vamos lá, [mas_get_player_nickname()]~"
         jump cafe_init
     elif mas_isNightNow():
-        m 3wub "Oh, do you want to go out to the cafe again?"
-        m 2hub "The previous time we went, it was very romantic~"
-        m 2eubsa "So glad to go again [player]!"
-        m 1hubsb "Let's go [mas_get_player_nickname()]~"
+        m 3wub "Oh, você quer sair para o café de novo?"
+        m 2hub "Da última vez que fomos, foi muito romântico~"
+        m 2eubsa "Fico tão feliz em ir novamente, [player]!"
+        m 1hubsb "Vamos lá, [mas_get_player_nickname()]~"
         jump cafe_init
     else:
-        m 1eub "Next time then, [mas_get_player_nickname()]."
+        m 1eub "Na próxima vez então, [mas_get_player_nickname()]."
         jump screen_extraplus
     return
 
@@ -146,17 +146,17 @@ label cafe_talk:
     python:
         store.disable_zoom_button = True
         cafe_menu = [
-            ("How are you today?", 'extra_talk_feel'),
-            ("What's your greatest ambition?", 'extra_talk_ambition'),
-            ("Our communication is very limited, don't you think?", 'extra_talk_you'),
-            ("How do you see us in 10 years?", 'extra_talk_teen'),
-            ("What is your best memory that you currently have?", 'extra_talk_memory'),
-            ("Do you have any phobia?", 'extra_talk_phobia')
+            ("Como você está hoje?", 'extra_talk_feel'),
+            ("Qual é a sua maior ambição?", 'extra_talk_ambition'),
+            ("Nossa comunicação é muito limitada, não acha?", 'extra_talk_you'),
+            ("Como você nos vê em 10 anos?", 'extra_talk_teen'),
+            ("Qual é a sua melhor memória que você tem atualmente?", 'extra_talk_memory'),
+            ("Você tem alguma fobia?", 'extra_talk_phobia')
         ]
 
         items = [
-            ("Can we leave?", 'cafe_leave', 20),
-            ("Nevermind", 'to_cafe_loop', 0)
+            ("Podemos ir embora?", 'cafe_leave', 20),
+            ("Deixa pra lá", 'to_cafe_loop', 0)
         ]
     call screen extra_gen_list(cafe_menu, mas_ui.SCROLLABLE_MENU_TXT_LOW_AREA, items, close=False)
     return
@@ -164,32 +164,31 @@ label cafe_talk:
 label to_cafe_loop:
     show monika staticpose at t11
     $ store.disable_zoom_button = False
-    call screen dating_loop("cafe_talk", "monika_boopcafebeta", boop_enable=True)
+    call screen dating_loop(extraplus_acs_emptyplate, extraplus_acs_emptycup, "cafe_talk", "monika_no_dessert", "monika_boopcafebeta", boop_enable=True)
     return
 
 label cafe_leave:
-    hide screen _timer_monika
     show monika 1hua at t11
-    m 1eta "Oh, you want us to go back?"
-    m 1eub "Sounds good to me!"
-    m 3hua "But before we go..."
+    m 1eta "Oh, você quer voltar?"
+    m 1eub "Tudo bem!"
+    m 3hua "Mas antes de irmos..."
     jump cafe_hide_acs
 
 label comment_cafe:
-    m 1hubsa "Thank you for asking me out."
-    m 1eubsb "It is nice to have these moments as a couple!"
-    m 1eubsa "I feel very fortunate to have met you and that you keep choosing me every day."
-    m 1ekbsa "I love you, [mas_get_player_nickname()]!"
+    m 1hubsa "Obrigada por me convidar."
+    m 1eubsb "É bom ter esses momentos como casal!"
+    m 1eubsa "Me sinto muito sortuda por ter te conhecido e por você continuar me escolhendo a cada dia."
+    m 1ekbsa "Eu te amo, [mas_get_player_nickname()]!"
     $ mas_DropShield_dlg()
     $ mas_ILY()
     jump ch30_visual_skip
     return
 
-#====Restaurant====#
+#====Restaurante====#
 
 label go_to_restaurant:
     python:
-        # check_file_status(restaurant_sprite, '/game/submods/ExtraPlus/submod_assets/backgrounds')
+        check_file_status(restaurant_sprite, '/game/submods/ExtraPlus/submod_assets/backgrounds')
         mas_extra_location(locate=True)
         extra_seen_background("restaurant_sorry_player", "gtrestaurantv2", "check_label_restaurant")
 
@@ -199,56 +198,56 @@ label check_label_restaurant:
 label gtrestaurant:
     show monika 1eua at t11
     if mas_isDayNow():
-        m 3sub "Oh,{w=0.3} you want to go out to a restaurant?"
-        m 3hub "I'm so happy to hear that,{w=0.3} [player]!"
-        m "It's so sweet of you to treat me to a date."
+        m 3sub "Oh,{w=0.3} você quer sair para um restaurante?"
+        m 3hub "Fico tão feliz em ouvir isso,{w=0.3} [player]!"
+        m "É tão doce da sua parte me convidar para um encontro."
         if mas_anni.isAnni():
-            m "And on our anniversary no less,{w=0.3} perfect timing [player]~!"
+            m "E no nosso aniversário, nada menos,{w=0.3} perfeito, [player]~!"
             $ persistent._extraplusr_hasplayergoneonanniversary == True
-        m 1hubsa "I just know it'll be great!"
-        m 1hubsb "Okay,{w=0.3} let's go [mas_get_player_nickname()]~"
+        m 1hubsa "Eu sei que vai ser incrível!"
+        m 1hubsb "Ok,{w=0.3} vamos lá, [mas_get_player_nickname()]~"
         jump restaurant_init
 
     elif mas_isNightNow():
-        m 3sub "Oh,{w=0.3} you want to go out to a restaurant?"
-        m "That's so sweet of you to treat me to a date."
+        m 3sub "Oh,{w=0.3} você quer sair para um restaurante?"
+        m "É tão doce da sua parte me convidar para um encontro."
         if mas_anni.isAnni():
-            m "And on our anniversary no less,{w=0.3} perfect timing [player]~!"
+            m "E no nosso aniversário, nada menos,{w=0.3} perfeito, [player]~!"
             $ persistent._extraplusr_hasplayergoneonanniversary == True
-        m 1hubsb "Let's go [mas_get_player_nickname()]~"
+        m 1hubsb "Vamos lá, [mas_get_player_nickname()]~"
         jump restaurant_init
     else:
-        m 1eub "Another time then,{w=0.3} [mas_get_player_nickname()]."
+        m 1eub "Outra hora então,{w=0.3} [mas_get_player_nickname()]."
         jump screen_extraplus
     return
 
 label gtrestaurantv2:
     show monika 1eua at t11
     if mas_isDayNow():
-        m 3wub "Oh, you want to go out to the restaurant again?"
+        m 3wub "Oh, você quer ir ao restaurante de novo?"
         if persistent._extraplusr_hasplayergoneonanniversary == True:
-            m "Hmm~ I'm still thinking about the time you took us there for our anniversary,"
-            extend " I thought it was so romantic~"
-            m "So I'm glad we get to go again~!"
+            m "Hmm~ Estou pensando na última vez que fomos lá para o nosso aniversário,"
+            extend " achei tão romântico~"
+            m "Então estou feliz que possamos ir novamente~!"
         else: 
-            m 2hub "The last time we went, I had so much fun!"
-            m 2eubsa "So I'm glad to hear it [player]!"
-        m 1hubsb "Well, let's go then [mas_get_player_nickname()]~"
+            m 2hub "Da última vez que fomos, eu me diverti tanto!"
+            m 2eubsa "Fico feliz em ouvir isso, [player]!"
+        m 1hubsb "Bem, vamos lá então, [mas_get_player_nickname()]~"
         jump restaurant_init
 
     elif mas_isNightNow():
-        m 3wub "Oh, you want to go out out to the restaurant again?"
+        m 3wub "Oh, você quer sair para o restaurante de novo?"
         if persistent._extraplusr_hasplayergoneonanniversary == True:
-            m "Hmm~{w=0.3} I'm still thinking about the time you took us there for our anniversary,"
-            extend "You really know how to make our night amazing!"
-            m "So I'm glad we get to go again~!"
+            m "Hmm~{w=0.3} Estou pensando na última vez que fomos lá para o nosso aniversário,"
+            extend "Você realmente sabe como tornar nossa noite incrível!"
+            m "Então estou feliz que possamos ir novamente~!"
         else: 
-            m 2hub "The last time we went, it was so romantic~"
-            m 2eubsa "So I'm glad to go again [player]!"
-        m 1hubsb "Let's go then [mas_get_player_nickname()]~"
+            m 2hub "Da última vez que fomos, foi tão romântico~"
+            m 2eubsa "Fico feliz em ir novamente, [player]!"
+        m 1hubsb "Vamos lá então, [mas_get_player_nickname()]~"
         jump restaurant_init
     else:
-        m 1eub "Next time then, [mas_get_player_nickname()]."
+        m 1eub "Na próxima vez então, [mas_get_player_nickname()]."
         jump screen_extraplus
     return
 
@@ -257,22 +256,22 @@ label restaurant_talk:
     python:
         store.disable_zoom_button = True
         restaurant_menu = [
-            ("How are you doing, [m_name]?", 'extra_talk_doing'),
-            ("If you could live anywhere, where would it be?", 'extra_talk_live'),
-            ("What would you change about yourself if you could?", 'extra_talk_change'),
-            ("If you were a super-hero, what powers would you have?", 'extra_talk_superhero'),
-            ("Do you have a life motto?", 'extra_talk_motto'),
-            ("Aside from necessities, what's the one thing you couldn't go a day without?", 'extra_talk_without'),
-            ("Is your glass half full or half empty?", 'extra_talk_glass'),
-            ("What annoys you most?", 'extra_talk_annoy'),
-            ("Describe yourself in three words.", 'extra_talk_3words'),
-            ("What do you think is the first thing to pop into everyone's minds when they think about you?", 'extra_talk_pop'),
-            ("If you were an animal, what animal would you be?", 'extra_talk_animal'),
+            ("Como você está, [m_name]?", 'extra_talk_doing'),
+            ("Se você pudesse viver em qualquer lugar, onde seria?", 'extra_talk_live'),
+            ("O que você mudaria em si mesmo se pudesse?", 'extra_talk_change'),
+            ("Se você fosse um super-herói, quais poderes você teria?", 'extra_talk_superhero'),
+            ("Você tem um lema de vida?", 'extra_talk_motto'),
+            ("Além das necessidades, qual é a única coisa que você não conseguiria passar um dia sem?", 'extra_talk_without'),
+            ("Seu copo está meio cheio ou meio vazio?", 'extra_talk_glass'),
+            ("O que mais te irrita?", 'extra_talk_annoy'),
+            ("Descreva-se em três palavras.", 'extra_talk_3words'),
+            ("O que você acha que é a primeira coisa que vem à mente das pessoas quando pensam em você?", 'extra_talk_pop'),
+            ("Se você fosse um animal, que animal você seria?", 'extra_talk_animal'),
         ]
 
         items = [
-            ("Can we leave?", 'restaurant_leave', 20),
-            ("Nevermind", 'to_restaurant_loop', 0)
+            ("Podemos ir embora?", 'restaurant_leave', 20),
+            ("Deixa pra lá", 'to_restaurant_loop', 0)
         ]
     call screen extra_gen_list(restaurant_menu, mas_ui.SCROLLABLE_MENU_TXT_LOW_AREA, items, close=False)
     return
@@ -280,104 +279,18 @@ label restaurant_talk:
 label to_restaurant_loop:
     show monika staticpose at t11
     $ store.disable_zoom_button = False
-    call screen dating_loop("restaurant_talk", "monika_booprestaurantbeta", boop_enable=True)
+    call screen dating_loop(extraplus_acs_pudding, extraplus_acs_icecream, "restaurant_talk", "monika_no_food", "monika_booprestaurantbeta", boop_enable=True)
     return
 
 label restaurant_leave:
-    hide screen _timer_monika
     show monika 1hua at t11
-    m 1eta "Oh,{w=0.3} you're ready for us to leave?"
-    m 1eub "Sounds good to me!"
-    m 3hua "But before we go..."
+    m 1eta "Oh,{w=0.3} você está pronto para irmos embora?"
+    m 1eub "Parece bom para mim!"
+    m 3hua "Mas antes de irmos..."
     jump restaurant_hide_acs
 
-#====Pool
-
-# label go_to_pool:
-#     python:
-#         # check_file_status(cafe_sprite, '/game/submods/ExtraPlus/submod_assets/backgrounds')
-#         mas_extra_location(locate=True)
-#         extra_seen_background("pool_sorry_player", "gtpoolv2", "check_label_pool")
-
-# label check_label_pool:
-#     pass
-
-# label gtpool:
-#     show monika 1eua at t11
-#     if mas_isDayNow():
-#         jump cafe_init
-
-#     elif mas_isNightNow():
-#         jump cafe_init
-#     else:
-#         m 1eub "Another time then, [mas_get_player_nickname()]."
-#         jump screen_extraplus
-#     return
-
-# label gtpoolv2:
-#     show monika 1eua at t11
-#     if mas_isDayNow():
-#         m 3wub "Do you want to go to the cafe again?"
-#         m 2hub "The previous time we went, I had a lot of fun!"
-#         m 2eubsa "So glad to hear it [player]!"
-#         m 1hubsb "Well, let's go [mas_get_player_nickname()]~"
-#         jump cafe_init
-#     elif mas_isNightNow():
-#         m 3wub "Oh, do you want to go out to the cafe again?"
-#         m 2hub "The previous time we went, it was very romantic~"
-#         m 2eubsa "So glad to go again [player]!"
-#         m 1hubsb "Let's go [mas_get_player_nickname()]~"
-#         jump cafe_init
-#     else:
-#         m 1eub "Next time then, [mas_get_player_nickname()]."
-#         jump screen_extraplus
-#     return
-
-# label pool_talk:
-#     show monika staticpose at t21
-#     python:
-#         store.disable_zoom_button = True
-#         cafe_menu = [
-#             ("How are you today?", 'extra_talk_feel'),
-#             ("What's your greatest ambition?", 'extra_talk_ambition'),
-#             ("Our communication is very limited, don't you think?", 'extra_talk_you'),
-#             ("How do you see us in 10 years?", 'extra_talk_teen'),
-#             ("What is your best memory that you currently have?", 'extra_talk_memory'),
-#             ("Do you have any phobia?", 'extra_talk_phobia')
-#         ]
-
-#         items = [
-#             ("Can we leave?", 'cafe_leave', 20),
-#             ("Nevermind", 'to_cafe_loop', 0)
-#         ]
-#     call screen extra_gen_list(cafe_menu, mas_ui.SCROLLABLE_MENU_TXT_LOW_AREA, items, close=False)
-#     return
-
-# label to_cafe_loop:
-#     show monika staticpose at t11
-#     $ store.disable_zoom_button = False
-#     call screen dating_loop(extraplus_acs_emptyplate, extraplus_acs_emptycup, "cafe_talk", "monika_no_dessert", "monika_boopcafebeta", boop_enable=True)
-#     return
-
-# label cafe_leave:
-#     show monika 1hua at t11
-#     m 1eta "Oh, you want us to go back?"
-#     m 1eub "Sounds good to me!"
-#     m 3hua "But before we go..."
-#     jump cafe_hide_acs
-
-# label comment_cafe:
-#     m 1hubsa "Thank you for asking me out."
-#     m 1eubsb "It is nice to have these moments as a couple!"
-#     m 1eubsa "I feel very fortunate to have met you and that you keep choosing me every day."
-#     m 1ekbsa "I love you, [mas_get_player_nickname()]!"
-#     $ mas_DropShield_dlg()
-#     $ mas_ILY()
-#     jump ch30_visual_skip
-#     return
-
 #===========================================================================================
-# Others
+# Outros
 #===========================================================================================
 #====Cafe====#
 
@@ -387,79 +300,79 @@ label monika_no_dessert:
         python:
             monika_chr.remove_acs(extraplus_acs_fruitcake)
             monika_chr.wear_acs(extraplus_acs_emptyplate)
-        m 1hua "Wow, I finished my fruitcake."
-        m 1eub "I really enjoyed it~"
+        m 1hua "Uau, eu terminei meu bolo de frutas."
+        m 1eub "Eu realmente gostei~"
     elif monika_chr.is_wearing_acs(extraplus_acs_chocolatecake):
         python:
             monika_chr.remove_acs(extraplus_acs_chocolatecake)
             monika_chr.wear_acs(extraplus_acs_emptyplate)
-        m 1hua "Wow, I finished my chocolate cake."
-        m 1sua "It tasted so sweet~"
+        m 1hua "Uau, eu terminei meu bolo de chocolate."
+        m 1sua "Estava tão doce~"
     if monika_chr.is_wearing_acs(extraplus_acs_coffeecup):
         python:
             monika_chr.remove_acs(extraplus_acs_coffeecup)
             monika_chr.wear_acs(extraplus_acs_emptycup)
-        m 3dub "Also, this coffee was also good."
+        m 3dub "Além disso, este café também estava bom."
     if dessert_player == True:
-        m 1etb "By the way, have you finished your dessert yet?{nw}"
+        m 1etb "A propósito, você já terminou sua sobremesa?{nw}"
         $ _history_list.pop()
         menu:
-            m "By the way, have you finished your dessert yet?{fast}"
-            "Yes":
+            m "A propósito, você já terminou sua sobremesa?{fast}"
+            "Sim":
                 m 1hubsa "Ehehe~"
-                m 1hubsb "I hope you enjoyed it!"
-            "Not yet":
-                m 1eubsa "Don't worry, eat slowly."
-                m 1eubsb "I wait for you patiently~"
+                m 1hubsb "Espero que você tenha gostado!"
+            "Ainda não":
+                m 1eubsa "Não se preocupe, coma devagar."
+                m 1eubsb "Eu espero por você pacientemente~"
     else:
-        m 1ekc "You told me not to worry."
-        m 1ekb "But, I guess you at least have a cup of coffee."
-    m 1hua "Let me know if you want to come back again."
+        m 1ekc "Você me disse para não me preocupar."
+        m 1ekb "Mas, eu imagino que você pelo menos tenha uma xícara de café."
+    m 1hua "Me avise se você quiser voltar aqui novamente."
     jump to_cafe_loop
     return
 
 label cafe_hide_acs:
-    #Code inspired by YandereDev
+    # Código inspirado no YandereDev
     if monika_chr.is_wearing_acs(extraplus_acs_fruitcake):
         if monika_chr.is_wearing_acs(extraplus_acs_coffeecup) or monika_chr.is_wearing_acs(extraplus_acs_emptycup):
-            m 3eub "I have to put this fruitcake away."
-            m 3eub "Also, I'll put this cup away, I won't be long."
+            m 3eub "Preciso guardar este bolo de frutas."
+            m 3eub "E também vou guardar esta xícara, não vou demorar."
             python:
                 monika_chr.remove_acs(extraplus_acs_fruitcake)
                 monika_chr.remove_acs(extraplus_acs_coffeecup)
                 monika_chr.remove_acs(extraplus_acs_emptycup)
         else:
-            m 3eub "I have to put this fruitcake away, I'll be right back."
+            m 3eub "Preciso guardar este bolo de frutas, já volto."
             $ monika_chr.remove_acs(extraplus_acs_fruitcake)
 
     elif monika_chr.is_wearing_acs(extraplus_acs_chocolatecake):
         if monika_chr.is_wearing_acs(extraplus_acs_coffeecup) or monika_chr.is_wearing_acs(extraplus_acs_emptycup):
-            m 3eua "I must put this chocolate cake away."
-            m 3eua "Also, I'll put this cup away, it won't be long now."
+            m 3eua "Preciso guardar este bolo de chocolate."
+            m 3eua "E também vou guardar esta xícara, não vai demorar."
             python:
                 monika_chr.remove_acs(extraplus_acs_chocolatecake)
                 monika_chr.remove_acs(extraplus_acs_coffeecup)
                 monika_chr.remove_acs(extraplus_acs_emptycup)
         else:
-            m 3eua "I must put this chocolate cake away, I'll be right back."
+            m 3eua "Preciso guardar este bolo de chocolate, já volto."
             $ monika_chr.remove_acs(extraplus_acs_chocolatecake)
 
     elif monika_chr.is_wearing_acs(extraplus_acs_emptyplate):
         if monika_chr.is_wearing_acs(extraplus_acs_coffeecup) or monika_chr.is_wearing_acs(extraplus_acs_emptycup):
-            m 3hua "I'll go put this plate away."
-            m 3hua "Also, I'll put this cup away, I won't be long."
+            m 3hua "Vou guardar este prato."
+            m 3hua "E também vou guardar esta xícara, não vou demorar."
             python:
                 monika_chr.remove_acs(extraplus_acs_emptyplate)
                 monika_chr.remove_acs(extraplus_acs_coffeecup)
                 monika_chr.remove_acs(extraplus_acs_emptycup)
         else:
-            m 3hua "I'm going to put this plate away, give me a moment."
-            $ monika_chr.remove_acs(extraplus_acs_emptyplate)
+            m 3hua "Vou guardar este prato, me dê um momento."
+            $ monika_chr.remove_acs(extraplus_acs_emptyplate )
 
     call mas_transition_to_emptydesk
     pause 2.0
     call mas_transition_from_emptydesk("monika 1eua")
-    m 1hua "Okay, let's go, [player]!"
+    m 1hua "Ok, vamos lá, [player]!"
     call extra_restore_bg("comment_cafe")
     return
 
@@ -471,9 +384,9 @@ label monika_no_food:
         python:
             monika_chr.remove_acs(extraplus_acs_pasta)
             monika_chr.wear_acs(extraplus_acs_remptyplate)
-        m 1hua "Wow, I finished my pasta."
-        m 1eub "I really enjoyed it~"
-        m "Now I'll grab some dessert. Be right back!"
+        m 1hua "Uau, eu terminei minha massa."
+        m 1eub "Eu realmente gostei~"
+        m "Agora vou pegar uma sobremesa. Já volto!"
         $ monika_chr.remove_acs(extraplus_acs_remptyplate)
         call mas_transition_to_emptydesk
         pause 2.0
@@ -484,9 +397,9 @@ label monika_no_food:
         python:
             monika_chr.remove_acs(extraplus_acs_pancakes)
             monika_chr.wear_acs(extraplus_acs_remptyplate)
-        m 1hua "Wow, I finished my pancakes."
-        m 1sua "They were delicious~"
-        m "Now I'll grab some dessert. Be right back!"
+        m 1hua "Uau, eu terminei minhas panquecas."
+        m 1sua "Elas estavam deliciosas~"
+        m "Agora vou pegar uma sobremesa. Já volto!"
         $ monika_chr.remove_acs(extraplus_acs_remptyplate)
         call mas_transition_to_emptydesk
         pause 2.0
@@ -497,9 +410,9 @@ label monika_no_food:
         python:
             monika_chr.remove_acs(extraplus_acs_waffles)
             monika_chr.wear_acs(extraplus_acs_remptyplate)
-        m 1hua "Wow, I finished my waffles."
-        m 1sua "They were delicious~"
-        m "Now I'll grab some dessert. Be right back!"
+        m 1hua "Uau, eu terminei minhas waffles."
+        m 1sua "Elas estavam deliciosas~"
+        m "Agora vou pegar uma sobremesa. Já volto!"
         $ monika_chr.remove_acs(extraplus_acs_remptyplate)
         call mas_transition_to_emptydesk
         pause 2.0
@@ -507,48 +420,48 @@ label monika_no_food:
         call mas_transition_from_emptydesk("monika 1eua")
 
     if food_player == True:
-        m 1etb "By the way, have you finished your food yet?{nw}"
+        m 1etb "A propósito, você já terminou sua comida?{nw}"
         $ _history_list.pop()
         menu:
-            m "By the way, have you finished your food yet?{fast}"
-            "Yes":
+            m "A propósito, você já terminou sua comida?{fast}"
+            "Sim":
                 m 1hubsa "Ehehe~"
-                m 1hubsb "I hope you enjoyed it!"
-            "Not yet":
-                m 1eubsa "Don't worry, eat slowly."
-                m 1eubsb "I wait for you patiently~"
+                m 1hubsb "Espero que você tenha gostado!"
+            "Ainda não":
+                m 1eubsa "Não se preocupe, coma devagar."
+                m 1eubsb "Eu espero por você pacientemente~"
     else:
-        m 1ekc "You told me not to worry."
-        m 1ekb "But, I guess you at least have a drink with you."
-    m 1hua "Let me know if you want to come back again."
+        m 1ekc "Você me disse para não me preocupar."
+        m 1ekb "Mas, eu imagino que você pelo menos tenha uma bebida com você."
+    m 1hua "Me avise se você quiser voltar aqui novamente."
     jump to_restaurant_loop
     return
 
 label restaurant_hide_acs:
-    #Code inspired by YandereDev
+    #Código inspirado por YandereDev
     if monika_chr.is_wearing_acs(extraplus_acs_candles):
         if monika_chr.is_wearing_acs(extraplus_acs_pasta) or monika_chr.is_wearing_acs(extraplus_acs_icecream):
-            m 3eub "I have to put these candles away."
-            m "We can never be too careful with fire!"
-            m 3eub "Also, I'll put this plate away, I won't be long."
+            m 3eub "Preciso guardar essas velas."
+            m "Nunca dá pra ser cuidadoso demais com fogo!"
+            m 3eub "Além disso, vou guardar este prato, não vou demorar."
             python:
                 monika_chr.remove_acs(extraplus_acs_candles)
                 monika_chr.remove_acs(extraplus_acs_pasta)
                 monika_chr.remove_acs(extraplus_acs_icecream)
 
         else:
-            m 3eub "I have to put these candles away."
-            m "We can never be too careful with fire!"
+            m 3eub "Preciso guardar essas velas."
+            m "Nunca dá pra ser cuidadoso demais com fogo!"
             $ monika_chr.remove_acs(extraplus_acs_candles)
 
     elif monika_chr.is_wearing_acs(extraplus_acs_flowers):
-        m 3eua "I'll put these flowers away, I won't be long."
+        m 3eua "Vou guardar essas flores, não vou demorar."
         python:
             monika_chr.remove_acs(extraplus_acs_flowers)
 
     elif not monika_chr.is_wearing_acs(extraplus_acs_flowers):
         if monika_chr.is_wearing_acs(extraplus_acs_pancakes) or monika_chr.is_wearing_acs(extraplus_acs_pudding) or monika_chr.is_wearing_acs(extraplus_acs_waffles):
-            m 3eua "I must put this plate away."
+            m 3eua "Preciso guardar este prato."
             python:
                 monika_chr.remove_acs(extraplus_acs_waffles)
                 monika_chr.remove_acs(extraplus_acs_pancakes)
@@ -557,7 +470,7 @@ label restaurant_hide_acs:
     call mas_transition_to_emptydesk
     pause 2.0
     call mas_transition_from_emptydesk("monika 1eua")
-    m 1hua "Okay, let's go, [player]!"
+    m 1hua "Ok, vamos lá, [player]!"
     call extra_restore_bg
     return
 
@@ -570,15 +483,14 @@ label plus_walk:
     show monika idle at t21
     python:
         walk_menu = [
-            ("Cafe", 'go_to_cafe'),
-            ("Restaurant", 'go_to_restaurant'),
-            ("Pool", "screen_extraplus")
+            ("Cafeteria", 'go_to_cafe'),
+            ("Restaurante", 'go_to_restaurant')
         ]
         store.disable_zoom_button = True
         m_talk = renpy.substitute(renpy.random.choice(date_talk))
         renpy.say(m, m_talk, interact=False)
         items = [
-            ("Nevermind", 'screen_extraplus', 20)
+            ("Esqueça", 'screen_extraplus', 20)
         ]
     call screen extra_gen_list(walk_menu, mas_ui.SCROLLABLE_MENU_TXT_LOW_AREA, items, close=True)
     return
@@ -588,17 +500,17 @@ label plus_minigames:
     python:
         global ttt
         minigames_menu = [
-            minigames("Shell Game", 'minigame_sg', None),
-            minigames("Rock Paper Scissors", 'minigame_rps', None)
+            minigames("Jogo do copo", 'minigame_sg', None),
+            minigames("Pedra, Papel e Tesoura", 'minigame_rps', None)
         ]
-        ttt = minigames("Tic Tac Toe", 'minigame_ttt', ttt_prep)
+        ttt = minigames("Jogo da velha", 'minigame_ttt', ttt_prep)
         minigames_menu.append(ttt)
         
         store.disable_zoom_button = True
         m_talk = renpy.substitute(renpy.random.choice(minigames_talk))
         renpy.say(m, m_talk, interact=False)
         items = [
-            ("Nevermind", 'screen_extraplus', 20)
+            ("Esqueça", 'screen_extraplus', 20)
         ]
     call screen extra_gen_list(minigames_menu, mas_ui.SCROLLABLE_MENU_TXT_LOW_AREA, items, close=True)
     return
@@ -607,38 +519,42 @@ label plus_tools:
     show monika idle at t21
     python:
         tools_menu = [
-            ("View [m_name]'s Affection", 'aff_log'),
-            ("Create a gift for [m_name]", 'plus_make_gift'),
-            ("Change the window's title", 'extra_window_title'),
-            ("[m_name], I want to make a backup", 'mas_backup'),
-            ("[m_name], can you flip a coin?", 'coinflip'),
-            ("Hi [player]!", 'extra_dev_mode')
-            
+            ("Olhar afeição de [m_name]", 'aff_log'),
+            ("Dar um presente para [m_name]", 'plus_make_gift'),
+            ("Mudar o nome da janela", 'extra_window_title'),
+            ("[m_name], eu desejo um backup", 'mas_backup'),
+            ("[m_name], pode girar uma moeda?", 'coinflip')
         ]
+
+        if renpy.has_screen("chibika_chill") and os.path.exists(renpy.config.basedir + "/game/submods/ExtraPlus/submod_assets/sprites/accessories/0/"):
+            tools_menu.append(("Oii [player]!", 'extra_dev_mode'))
+
         store.disable_zoom_button = True
         items = [
-            ("Github Repository", 'github_submod', 20),
-            ("Nevermind", 'screen_extraplus', 0)
+            ("Comunidade MASBrasil", 'masbrasil_submod', 20),
+            ("Repositórios do Github", 'githubs_submod', 20),
+            ("Esqueça", 'screen_extraplus', 0)
         ]
+
     call screen extra_gen_list(tools_menu, mas_ui.SCROLLABLE_MENU_TXT_LOW_AREA, items, close=True)
     return
 
 ################################################################################
-## GIFTS
+## PRESENTES
 ################################################################################
 
 label plus_make_gift:
     show monika idle at t21
     python:
         gift_menu = [
-            ("Customized gift", 'plus_make_file'),
-            ("Groceries", 'plus_groceries'),
-            ("Objects", 'plus_objects'),
-            ("Ribbons", 'plus_ribbons')
+            ("Presente personalizado", 'plus_make_file'),
+            ("Mantimentos", 'plus_groceries'),
+            ("Objetos", 'plus_objects'),
+            ("Laços", 'plus_ribbons')
         ]
 
         items = [
-            ("Nevermind", 'plus_tools', 20)
+            ("Esqueça", 'plus_tools', 20)
         ]
     call screen extra_gen_list(gift_menu, mas_ui.SCROLLABLE_MENU_TXT_LOW_AREA, items, close=True)
     return
@@ -648,7 +564,7 @@ label plus_make_file:
 
     python:
         makegift = mas_input(
-            prompt=("Enter the name of the gift."),
+            prompt=("Escreva o nome do presente."),
             allow=" abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_0123456789",
             screen_kwargs={"use_return_button": True, "return_button_value": "cancel"},
         )
@@ -661,7 +577,7 @@ label plus_make_file:
             filepath = os.path.join(renpy.config.basedir, 'characters', makegift + ".gift")
             with open(filepath, "a"):
                 pass  # just create an empty file
-            renpy.notify("Has been successfully created.")
+            renpy.notify("Presente criado com sucesso.")
             renpy.jump("plus_make_gift")
             
     return
@@ -670,19 +586,19 @@ label plus_groceries:
     show monika idle at t21
     python:
         groceries_menu = [
-            extra_gift("Coffee", 'coffee.gift'),
+            extra_gift("Café", 'café.gift'),
             extra_gift("Chocolates", 'chocolates.gift'),
             extra_gift("Cupcake", 'cupcake.gift'),
             extra_gift("Fudge", 'fudge.gift'),
-            extra_gift("Hot Chocolate", 'hotchocolate.gift'),
-            extra_gift("Candy", 'candy.gift'),
-            extra_gift("Candy Canes", 'candycane.gift'),
-            extra_gift("Candy Corn", 'candycorn.gift'),
-            extra_gift("Christmas Cookies", 'christmascookies.gift')
+            extra_gift("Chocolate Quente", 'chocolatequente.gift'),
+            extra_gift("Doces", 'doces.gift'),
+            extra_gift("Bengala Doce", 'bengaladoce.gift'),
+            extra_gift("Bala de Milho", 'balademilho.gift'),
+            extra_gift("Biscoitos de Natal", 'biscoitosdenatal.gift')
         ]
 
         items = [
-            ("Nevermind", 'plus_make_gift', 20)
+            ("Esqueça", 'plus_make_gift', 20)
         ]
     call screen extra_gen_list(groceries_menu, mas_ui.SCROLLABLE_MENU_TXT_LOW_AREA, items, close=True)
     return
@@ -691,14 +607,14 @@ label plus_objects:
     show monika idle at t21
     python:
         objects_menu = [
-            extra_gift("Promise Ring", 'promisering.gift'),
-            extra_gift("Roses", 'roses.gift'),
-            extra_gift("Quetzal Plushie", 'quetzalplushie.gift'),
-            extra_gift("Thermos Mug", 'justmonikathermos.gift')
+            extra_gift("Anel de Compromisso", 'aneldecompromisso.gift'),
+            extra_gift("Rosas", 'rosas.gift'),
+            extra_gift("Quetzal de Pelúcia", 'quetzaldepelúcia.gift'),
+            extra_gift("Garrafa Térmica", 'garrafatérmica.gift')
         ]
 
         items = [
-            ("Nevermind", 'plus_make_gift', 20)
+            ("Esqueça", 'plus_make_gift', 20)
         ]
     call screen extra_gen_list(objects_menu, mas_ui.SCROLLABLE_MENU_TXT_LOW_AREA, items, close=True)
     return
@@ -706,27 +622,25 @@ label plus_objects:
 label plus_ribbons:
     show monika idle at t21
     python:
-        ribbons_menu = [
-            extra_gift("Black Ribbon", 'blackribbon.gift'),
-            extra_gift("Blue Ribbon", 'blueribbon.gift'),
-            extra_gift("Dark Purple Ribbon", 'darkpurpleribbon.gift'),
-            extra_gift("Emerald Ribbon", 'emeraldribbon.gift'),
-            extra_gift("Gray Ribbon", 'grayribbon.gift'),
-            extra_gift("Green Ribbon", 'greenribbon.gift'),
-            extra_gift("Light Purple Ribbon", 'lightpurpleribbon.gift'),
-            extra_gift("Peach Ribbon", 'peachribbon.gift'),
-            extra_gift("Pink Ribbon", 'pinkribbon.gift'),
-            extra_gift("Platinum Ribbon", 'platinumribbon.gift'),
-            extra_gift("Red Ribbon", 'redribbon.gift'),
-            extra_gift("Ruby Ribbon", 'rubyribbon.gift'),
-            extra_gift("Sapphire Ribbon", 'sapphireribbon.gift'),
-            extra_gift("Silver Ribbon", 'silverribbon.gift'),
-            extra_gift("Teal Ribbon", 'tealribbon.gift'),
-            extra_gift("Yellow Ribbon", 'yellowribbon.gift')
+        ribbons_menu = [            
+            extra_gift("Laço Preto", 'laçopreto.gift'),
+            extra_gift("Laço Azul", 'laçoazul.gift'),
+            extra_gift("Laço Roxo Escuro", 'laçoroxoescuro.gift'),
+            extra_gift("Laço Esmeralda", 'laçoesmeralda.gift'),
+            extra_gift("Laço Cinza", 'laçocinza.gift'),
+            extra_gift("Laço Verde", 'laçoverde.gift'),
+            extra_gift("Laço Roxo Claro", 'fitaroxoclaro.gift'),
+            extra_gift("Laço Rosa", 'laçorosa.gift'),
+            extra_gift("Laço Platina", 'laçoplatina.gift'),
+            extra_gift("Laço Vermelha", 'laçovermelha.gift'),
+            extra_gift("Laço Rubi", 'laçorubi.gift'),
+            extra_gift("Laço Safira", 'laçosafira.gift'),
+            extra_gift("Laço Prata", 'laçoprata.gift'),
+            extra_gift("Laço Amarelo", 'laçoamarelo.gift')
         ]
 
         items = [
-            ("Nevermind", 'plus_make_gift', 20)
+            ("Esqueça", 'plus_make_gift', 20)
         ]
     call screen extra_gen_list(ribbons_menu, mas_ui.SCROLLABLE_MENU_TXT_LOW_AREA, items, close=True)
     return
