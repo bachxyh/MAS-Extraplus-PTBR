@@ -92,4 +92,11 @@ Aqui você pode ver o repositório oficial do Monika After Story!
 
 Se este submod for editado por outra pessoa e enviar essa modificação para a comunidade, não me responsabilizo pelos erros que ela apresentar devido ao que a outra pessoa codificou. É por isso que coloquei no submod um botão para enviá-lo para cá, para que você possa ver o que há de novo nesse submod, obrigado por sua atenção.
 
+## Redes Sociais do Criador do Submod
+<a href="https://www.reddit.com/user/UnderstandingAny7135">
+<img alt="reddit" src="https://cdn-icons-png.flaticon.com/512/2111/2111459.png" width="100">
+<a href="https://www.youtube.com/channel/UCLJcpsS6XWEPuV5vsq6TykA">
+<img alt="youtube" src="https://cdn.icon-icons.com/icons2/1211/PNG/512/1491579609-yumminkysocialmedia08_83079.png" width="100">
 
+## Comunidade MASBrasil
+[![Discord](MAS-Extraplus-PTBR/icons_readme/monkerMASBRASIL.png)](https://discord.gg/masbrasil)
